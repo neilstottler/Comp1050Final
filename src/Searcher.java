@@ -12,12 +12,14 @@ public class Searcher {
 	private String searchinput;
 
 	public Searcher(String input) {
-		path = "C:/Users/stottlern/eclipse-workspace-spring-2019/comp1050-Final/filename.txt";
+		path = "books.txt";
 		searchinput = input;
 	}
 
 	/**
-	 * reads txt file and returns all contents of lines. to be sorted in book class
+	 * reads txt file and returns all 
+	 * contents of lines 
+	 * to be sorted in book class
 	 * @return
 	 * @throws IOException
 	 */
@@ -52,18 +54,22 @@ public class Searcher {
 		}
 
 		textReader.close();
-		
+		 /*
 		//debugging
 		for (i = 0; i < numberOfLines; i++) {
 			textData[i] = "";
 		}
 		textData[0] = "debugging";
+		*/
 		return textData;
+		
 		
 	}
 
 	/**
-	 * gets amount of lines in txt file because the file could have a infinite number of lines we need to count them
+	 * gets amount of lines in txt file because the
+	 * file could have a infinite number of lines 
+	 * we need to count them
 	 * @return
 	 * @throws IOException
 	 */

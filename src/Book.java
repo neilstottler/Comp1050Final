@@ -1,14 +1,24 @@
 import java.util.ArrayList;
 
+/**
+ * This class is the sorting method
+ * for the information grabbed
+ * by the Searcher class
+ * @author stottlern
+ *
+ */
 public class Book {
 
 	private String toSort;
 	public Book(String unsorted) {
-		System.out.println("book class in book constructure " + unsorted);
 		toSort = unsorted;
 	}
 	
-	public ArrayList sorter() {
+	/**
+	 * sorts info from string[] to ArrayList
+	 * @return book information sorted
+	 */
+	public ArrayList<String> sorter() {
 		
 		ArrayList<String> sorted = new ArrayList<>();
 		String[] arraysort = toSort.split(",");

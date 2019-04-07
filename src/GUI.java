@@ -53,8 +53,6 @@ public class GUI extends Application {
 						if (aryLines[i] == null) {
 							System.out.println("");
 						} else {
-							System.out.println(aryLines[i]);
-
 							//start sorting
 							String unsorted = aryLines[i];
 							Book toSort = new Book(unsorted);
@@ -87,7 +85,7 @@ public class GUI extends Application {
 
 		// make scene and add root pane
 		Scene scene = new Scene(root, 975, 650);
-		scene.getStylesheets().add("style.css");
+		//scene.getStylesheets().add("style.css");
 
 		// primary stage
 		primaryStage.setTitle("Hello World!");
