@@ -74,7 +74,7 @@ public class GUI extends Application {
 
 		// background image
 		Image img = new Image(new FileInputStream(
-				"C:\\Users\\stottlern\\eclipse-workspace-spring-2019\\comp1050-Final\\images\\courtyard.jpg"));
+				"images/courtyard.jpg"));
 		ImageView imgView = new ImageView(img);
 
 		BorderPane background = new BorderPane();

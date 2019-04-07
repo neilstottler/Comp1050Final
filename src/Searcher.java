@@ -20,7 +20,7 @@ public class Searcher {
 	 * reads txt file and returns all 
 	 * contents of lines 
 	 * to be sorted in book class
-	 * @return
+	 * @return String[] textdata pulled from text file
 	 * @throws IOException
 	 */
 	public String[] OpenFile() throws IOException {
