@@ -1,6 +1,8 @@
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.Arrays;
 
 public class Searcher {
@@ -25,45 +27,38 @@ public class Searcher {
 	 */
 	public String[] OpenFile() throws IOException {
 
-		FileReader fr = new FileReader(path);
-		BufferedReader textReader = new BufferedReader(fr);
+
+		BufferedReader textReader = new BufferedReader(new FileReader(path));
 
 		int numberOfLines = readLines();
 		String[] textData = new String[numberOfLines];
 
 		int i;
-
+		String line;
 		for (i = 0; i < numberOfLines; i++) {
-			textData[i] = textReader.readLine();
-			
+			line = textReader.readLine();
+			textData[i] = line;
 
-			//check if string is in line searching
+			//check if search is in this line
 			boolean contains = textData[i].contains(searchinput);
 			if (contains) {
 				textReader.close();
 				return textData;
-			} else {
-				for (i = 0; i < numberOfLines; i++) {
-					textData[i] = "";
-				}
-				textData[0] = "Unable to find search query";
-				textReader.close();
-				return textData;
 			}
-			
 		}
 
-		textReader.close();
-		 /*
-		//debugging
+		//if not in give error
 		for (i = 0; i < numberOfLines; i++) {
 			textData[i] = "";
+			textData[0] = "Unable to find search query";
+			textReader.close();
+			return textData;
 		}
-		textData[0] = "debugging";
-		*/
+		textData[0] = "Unknown Error";
+		textReader.close();
 		return textData;
-		
-		
+
+
 	}
 
 	/**
