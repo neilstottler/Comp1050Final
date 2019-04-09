@@ -33,27 +33,30 @@ public class Searcher {
 		int numberOfLines = readLines();
 		String[] textData = new String[numberOfLines];
 
-		int i;
+		
 		String line;
-		for (i = 0; i < numberOfLines; i++) {
+		for (int i = 0; i < numberOfLines; i++) {
 			line = textReader.readLine();
 			textData[i] = line;
 
 			//check if search is in this line
 			boolean contains = textData[i].contains(searchinput);
 			if (contains) {
+				System.out.println("we here");
 				textReader.close();
 				return textData;
 			}
 		}
 
 		//if not in give error
-		for (i = 0; i < numberOfLines; i++) {
-			textData[i] = "";
+		for (int j = 0; j < textData.length; j++) {
 			textData[0] = "Unable to find search query";
+			textData[j] = "";
 			textReader.close();
 			return textData;
 		}
+		
+		System.out.println("we here 3");
 		textData[0] = "Unknown Error";
 		textReader.close();
 		return textData;

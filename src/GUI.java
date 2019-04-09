@@ -135,6 +135,12 @@ public class GUI extends Application {
 			@Override
 			public void handle(ActionEvent e) {
 
+				author.setText("");
+				book.setText("");
+				serialNumber.setText("");
+				abStract.setText("");
+				
+				
 				//check if search bar is empty
 				if (!searchbar.getText().equals("")) {
 					
@@ -150,26 +156,35 @@ public class GUI extends Application {
 							if (aryLines[i] == null) {
 								System.out.println("");
 							} else {
+								
 								//start sorting
 								String unsorted = aryLines[i];
 								Book toSort = new Book(unsorted);
-								//print sorted
-								for (int j = 0 ; j < toSort.sorter().size(); j++) {
-									if (!(toSort.sorter().size() < 4)) {
-										if (!searchbar.getText().equals("")) {
-											
-											//set text of lables to match search
-											serialNumber.setText("ISBN: " + toSort.sorter().get(0));
-											author.setText("Author: " + toSort.sorter().get(1));
-											book.setText("Title: " + toSort.sorter().get(2));
-											abStract.setText("Abstract: " + toSort.sorter().get(3));
-											
-											}
-									} else {
-										serialNumber.setText("Error: " + aryLines[0]);
+								
+								if (toSort.sorter().get(i).contains(str)) {
+									//print sorted
+									for (int j = 0 ; j < toSort.sorter().size(); j++) {
+										if (!(toSort.sorter().size() < 4)) {
+											if (!searchbar.getText().equals("")) {
+												
+												//set text of lables to match search
+												serialNumber.setText("ISBN: " + toSort.sorter().get(0));
+												author.setText("Author: " + toSort.sorter().get(1));
+												book.setText("Title: " + toSort.sorter().get(2));
+												abStract.setText("Abstract: " + toSort.sorter().get(3));
+												
+												}
+										} else {
+											serialNumber.setText("Error: " + aryLines[0]);
+										}
+										
 									}
-									
+								} else {
+									serialNumber.setText("Error: Did not find anything related to: ");
+									book.setText(str);
 								}
+								
+
 							}
 						}
 					} catch (IOException e1) {
@@ -197,6 +212,12 @@ public class GUI extends Application {
 			@Override
 			public void handle(ActionEvent e) {
 
+				author.setText("");
+				book.setText("");
+				serialNumber.setText("");
+				abStract.setText("");
+				
+				
 				//check if search bar is empty
 				if (!searchbar2.getText().equals("")) {
 					
@@ -217,23 +238,30 @@ public class GUI extends Application {
 								String unsorted = aryLines[i];
 								Book toSort = new Book(unsorted);
 								
-								//print sorted
-								for (int j = 0 ; j < toSort.sorter().size(); j++) {
-									if (!(toSort.sorter().size() < 4)) {
-										if (!searchbar.getText().equals("")) {
-											
-											//set text of lables to match search
-											serialNumber.setText("ISBN: " + toSort.sorter().get(0));
-											author.setText("Author: " + toSort.sorter().get(1));
-											book.setText("Title: " + toSort.sorter().get(2));
-											abStract.setText("Abstract: " + toSort.sorter().get(3));
-											
+								if (toSort.sorter().get(i).contains(str)) {
+									//print sorted
+									for (int j = 0 ; j < toSort.sorter().size(); j++) {
+										if (!(toSort.sorter().size() < 4)) {
+											if (!searchbar.getText().equals("")) {
+												
+												//set text of lables to match search
+												serialNumber.setText("ISBN: " + toSort.sorter().get(0));
+												author.setText("Author: " + toSort.sorter().get(1));
+												book.setText("Title: " + toSort.sorter().get(2));
+												abStract.setText("Abstract: " + toSort.sorter().get(3));
+												
+												}
+										} else {
+											serialNumber.setText("Error: " + aryLines[0]);
 										}
-									} else {
-										serialNumber.setText("Error: " + aryLines[0]);
+										
 									}
-									
+								} else {
+									serialNumber.setText("Error: Did not find anything related to: ");
+									book.setText(str);
 								}
+								
+
 							}
 						}
 					} catch (IOException e1) {
@@ -243,6 +271,7 @@ public class GUI extends Application {
 				} else {
 					//only does this if search bar is empty
 					primaryStage.setScene(scene2);
+					serialNumber.setText("Please enter some text into the search bar.");
 				}
 			}
 		});
