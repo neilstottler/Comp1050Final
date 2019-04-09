@@ -42,7 +42,6 @@ public class Searcher {
 			//check if search is in this line
 			boolean contains = textData[i].contains(searchinput);
 			if (contains) {
-				System.out.println("we here");
 				textReader.close();
 				return textData;
 			}
