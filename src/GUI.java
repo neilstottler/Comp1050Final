@@ -151,8 +151,10 @@ public class GUI extends Application {
 						Searcher search = new Searcher(str);
 						String[] aryLines = search.OpenFile();
 
+
 						for (int i = 0; i < aryLines.length; i++) {
-							//check if array[i] is null
+							
+							//check if array[i] is null							
 							if (aryLines[i] == null) {
 								System.out.println("");
 							} else {
@@ -161,9 +163,12 @@ public class GUI extends Application {
 								String unsorted = aryLines[i];
 								Book toSort = new Book(unsorted);
 								
-								if (toSort.sorter().get(i).contains(str)) {
+								
+								if (aryLines[i].contains(str)) {
+									
 									//print sorted
-									for (int j = 0 ; j < toSort.sorter().size(); j++) {
+									for (int j = 0; j < aryLines.length; j++) {						
+										
 										if (!(toSort.sorter().size() < 4)) {
 											if (!searchbar.getText().equals("")) {
 												
@@ -238,9 +243,9 @@ public class GUI extends Application {
 								String unsorted = aryLines[i];
 								Book toSort = new Book(unsorted);
 								
-								if (toSort.sorter().get(i).contains(str)) {
+								if (aryLines[i].contains(str)) {
 									//print sorted
-									for (int j = 0 ; j < toSort.sorter().size(); j++) {
+									for (int j = 0; j < aryLines.length; j++) {
 										if (!(toSort.sorter().size() < 4)) {
 											if (!searchbar.getText().equals("")) {
 												
