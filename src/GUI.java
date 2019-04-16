@@ -22,19 +22,19 @@ import javafx.stage.Stage;
 
 public class GUI extends Application {
 
-    Scene homeScreen, scene2;
+	Scene homeScreen, scene2;
 
 	public static void main(String[] args) {
 		launch(args);
 	}
-	
+
 	@Override
 	public void start(Stage primaryStage) throws FileNotFoundException {
-		
+
 		final Button btnSearch = new Button();
 		btnSearch.setText("Search");
 		//btnSearch.setOnAction(e -> window.setScene(scene2));
-	
+
 		TextField searchbar = new TextField();
 		searchbar.setPrefWidth(500);
 
@@ -59,7 +59,7 @@ public class GUI extends Application {
 		primaryStage.setScene(homeScreen);
 		//scene1.getStylesheets().add("style.css");
 
-		
+
 
 		// primary stage
 
@@ -72,7 +72,7 @@ public class GUI extends Application {
 		TextField searchbar2 = new TextField();
 		searchbar2.setPrefWidth(500);
 
-		
+
 		HBox searchButton2 = new HBox(searchbar2, btnSearch2);
 		searchButton2.setAlignment(Pos.BOTTOM_CENTER);
 		searchButton2.setSpacing(50);
@@ -82,7 +82,7 @@ public class GUI extends Application {
 		root2.setHgap(10);
 		root2.setVgap(10);
 
-		
+
 		// background, could not include it because it is collapses everything 
 		Image img2 = new Image(new FileInputStream(
 				"images/courtyard.jpg"));
@@ -100,7 +100,7 @@ public class GUI extends Application {
 		Label serialNumber = new Label ("");
 		Label abStract = new Label ("");
 
-	
+
 
 		// setting fonts
 		author.setFont(Font.font("Verdana", 20));
@@ -109,9 +109,9 @@ public class GUI extends Application {
 		abStract.setFont(Font.font("Verdana", 20));
 		resultsSign.setFont(Font.font("Verdana",FontWeight.BOLD, 25));
 
-		
 
-	    // adding elements to GridPane
+
+		// adding elements to GridPane
 		root2.add(searchButton2, 2, 4);;
 		root2.add(resultsSign, 2, 9);
 		root2.add(author, 2, 17);
@@ -119,13 +119,13 @@ public class GUI extends Application {
 		root2.add(serialNumber, 2, 13);
 		root2.add(abStract, 2, 18);
 		root2.add(extraspacing, 1, 15);
-		
-		
+
+
 		root2.setStyle("-fx-background-image: url('" + background2 + "')");
-		
+
 
 		Scene scene2 = new Scene(root2,975,650);
-		
+
 		/*
 		 * 
 		 * Searching Home Screen
@@ -139,11 +139,15 @@ public class GUI extends Application {
 				book.setText("");
 				serialNumber.setText("");
 				abStract.setText("");
-				
-				
+
+				int counter = 0;
+
 				//check if search bar is empty
-				if (!searchbar.getText().equals("")) {
-					
+				if (searchbar.getText().equals("")) {
+					primaryStage.setScene(homeScreen);
+
+				} else {
+
 					primaryStage.setScene(scene2);
 					// temp. outputs contexts of txt file
 					String str = searchbar.getText();
@@ -151,54 +155,56 @@ public class GUI extends Application {
 						Searcher search = new Searcher(str);
 						String[] aryLines = search.OpenFile();
 
+						for (int i = 0; i < Searcher.getNumberOfLines(); i++) {
+							System.out.println(i);
+							System.out.println("aryLines " + aryLines[i]);
 
-						for (int i = 0; i < aryLines.length; i++) {
-							
+
 							//check if array[i] is null							
 							if (aryLines[i] == null) {
 								System.out.println("");
 							} else {
-								
+
 								//start sorting
 								String unsorted = aryLines[i];
 								Book toSort = new Book(unsorted);
-								
-								
+
+
 								if (aryLines[i].contains(str)) {
-									
+									counter++;
 									//print sorted
-									for (int j = 0; j < aryLines.length; j++) {						
-										
+									for (int j = 0; j < Searcher.getNumberOfLines(); j++) {						
+
 										if (!(toSort.sorter().size() < 4)) {
-											if (!searchbar.getText().equals("")) {
-												
+
 												//set text of lables to match search
 												serialNumber.setText("ISBN: " + toSort.sorter().get(0));
 												author.setText("Author: " + toSort.sorter().get(1));
 												book.setText("Title: " + toSort.sorter().get(2));
 												abStract.setText("Abstract: " + toSort.sorter().get(3));
-												
-												}
+
+												System.out.println("BREAK shit test " + toSort.sorter().get(0));
+												break;
+
 										} else {
 											serialNumber.setText("Error: " + aryLines[0]);
 										}
-										
-									}
-								} else {
-									serialNumber.setText("Error: Did not find anything related to: ");
-									book.setText(str);
-								}
-								
 
+									}
+								}
 							}
 						}
+						
+						if (counter == 0) {
+							System.out.println("fucking");
+							serialNumber.setText("Error: Did not find anything related to: ");
+							book.setText(str);
+						}
+
+						
 					} catch (IOException e1) {
 						System.out.println(e1.getMessage());
 					}
-					
-				} else {
-					//only does this if search bar is empty
-					primaryStage.setScene(homeScreen);
 				}
 			}
 		});
@@ -207,7 +213,7 @@ public class GUI extends Application {
 		 * End Search button on Home Screen
 		 * 
 		 */
-		
+
 		/*
 		 * 
 		 * Searching result
@@ -221,11 +227,11 @@ public class GUI extends Application {
 				book.setText("");
 				serialNumber.setText("");
 				abStract.setText("");
-				
-				
+
+
 				//check if search bar is empty
 				if (!searchbar2.getText().equals("")) {
-					
+
 					primaryStage.setScene(scene2);
 					// temp. outputs contexts of txt file
 					String str = searchbar2.getText();
@@ -238,41 +244,41 @@ public class GUI extends Application {
 							if (aryLines[i] == null) {
 								System.out.println("");
 							} else {
-								
+
 								//start sorting
 								String unsorted = aryLines[i];
 								Book toSort = new Book(unsorted);
-								
+
 								if (aryLines[i].contains(str)) {
 									//print sorted
 									for (int j = 0; j < aryLines.length; j++) {
 										if (!(toSort.sorter().size() < 4)) {
 											if (!searchbar.getText().equals("")) {
-												
+
 												//set text of lables to match search
 												serialNumber.setText("ISBN: " + toSort.sorter().get(0));
 												author.setText("Author: " + toSort.sorter().get(1));
 												book.setText("Title: " + toSort.sorter().get(2));
 												abStract.setText("Abstract: " + toSort.sorter().get(3));
-												
-												}
+
+											}
 										} else {
 											serialNumber.setText("Error: " + aryLines[0]);
 										}
-										
+
 									}
 								} else {
 									serialNumber.setText("Error: Did not find anything related to: ");
 									book.setText(str);
 								}
-								
+
 
 							}
 						}
 					} catch (IOException e1) {
 						System.out.println(e1.getMessage());
 					}
-					
+
 				} else {
 					//only does this if search bar is empty
 					primaryStage.setScene(scene2);
