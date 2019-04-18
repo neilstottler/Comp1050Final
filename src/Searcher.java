@@ -67,7 +67,7 @@ public class Searcher {
 				
 			} else if (counter == 0 && !contains) {
 				
-				System.out.println("Nothing found?");
+				//System.out.println("Nothing found?");
 				
 				if (counter > 0) {
 					return textData;

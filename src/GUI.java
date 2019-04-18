@@ -11,6 +11,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -121,7 +122,11 @@ public class GUI extends Application {
 		resultsSign.setFont(Font.font("Verdana",FontWeight.BOLD, 25));
 
 
-
+		TextArea testing = new TextArea();
+		testing.setPrefWidth(500);
+		testing.setPrefHeight(400);
+		
+		
 		// adding elements to GridPane
 		root2.add(searchButton2, 2, 4);;
 		root2.add(resultsSign, 2, 9);
@@ -130,7 +135,7 @@ public class GUI extends Application {
 		root2.add(serialNumber, 2, 13);
 		root2.add(abStract, 2, 18);
 		root2.add(extraspacing, 1, 15);
-
+		root2.add(testing, 2, 20);
 
 
 		root2.setStyle("-fx-background-image: url('" + background2 + "')");
@@ -169,6 +174,9 @@ public class GUI extends Application {
 						Searcher search = new Searcher(str);
 						String[] aryLines = search.OpenFile();
 
+						
+						testing.clear();
+						
 						for (int i = 0; i < Searcher.getNumberOfLines(); i++) {
 							//System.out.println(i);
 							//System.out.println("aryLines " + aryLines[i]);
@@ -183,16 +191,24 @@ public class GUI extends Application {
 								String unsorted = aryLines[i];
 								Book toSort = new Book(unsorted);
 
-
+								
+								
 								if (aryLines[i].contains(str)) {
 									counter++;
 									//print sorted
 									for (int j = 0; j < Searcher.getNumberOfLines(); j++) {						
-										System.out.println(toSort.sorter().get(0));
-										System.out.println(toSort.sorter().get(1));
-										System.out.println(toSort.sorter().get(2));
-										System.out.println(toSort.sorter().get(3));
+										//System.out.println(toSort.sorter().get(0));
+										//System.out.println(toSort.sorter().get(1));
+										//System.out.println(toSort.sorter().get(2));
+										//System.out.println(toSort.sorter().get(3));
+										
+										
+										testing.setText(testing.getText() + "\n" + toSort.sorter().get(0));
+										testing.setText(testing.getText() + "\n" + toSort.sorter().get(1));
+										testing.setText(testing.getText() + "\n" + toSort.sorter().get(2));
+										testing.setText(testing.getText() + "\n" + toSort.sorter().get(3) + "\n");
 
+										
 										if (!(toSort.sorter().size() < 4)) {
 
 											//set text of lables to match search
@@ -201,9 +217,11 @@ public class GUI extends Application {
 											book.setText("Title: " + toSort.sorter().get(2));
 											abStract.setText("Abstract: " + toSort.sorter().get(3));
 
+											
 											break;
 
 										} else {
+										
 											serialNumber.setText("Error: " + aryLines[0]);
 										}
 
@@ -215,6 +233,7 @@ public class GUI extends Application {
 						if (counter == 0) {
 							//System.out.println("fucking");
 							serialNumber.setText("Error: Did not find anything related to: ");
+							testing.setText("No Results");
 							book.setText(str);
 						}
 
@@ -240,6 +259,8 @@ public class GUI extends Application {
 			@Override
 			public void handle(ActionEvent e) {
 
+				testing.clear();
+				
 				//set displayed text to void in case of error/changes to book info
 				author.setText("");
 				book.setText("");
@@ -280,10 +301,10 @@ public class GUI extends Application {
 									counter++;
 									//print sorted
 									for (int j = 0; j < Searcher.getNumberOfLines(); j++) {						
-										System.out.println(toSort.sorter().get(0));
-										System.out.println(toSort.sorter().get(1));
-										System.out.println(toSort.sorter().get(2));
-										System.out.println(toSort.sorter().get(3));
+										//System.out.println(toSort.sorter().get(0));
+										//System.out.println(toSort.sorter().get(1));
+										//System.out.println(toSort.sorter().get(2));
+										//System.out.println(toSort.sorter().get(3));
 
 										if (!(toSort.sorter().size() < 4)) {
 
@@ -292,6 +313,11 @@ public class GUI extends Application {
 											author.setText("Author: " + toSort.sorter().get(1));
 											book.setText("Title: " + toSort.sorter().get(2));
 											abStract.setText("Abstract: " + toSort.sorter().get(3));
+											
+											testing.setText(testing.getText() + "\n" + toSort.sorter().get(0));
+											testing.setText(testing.getText() + "\n" + toSort.sorter().get(1));
+											testing.setText(testing.getText() + "\n" + toSort.sorter().get(2));
+											testing.setText(testing.getText() + "\n" + toSort.sorter().get(3) + "\n");
 
 											break;
 
@@ -307,6 +333,7 @@ public class GUI extends Application {
 						if (counter == 0) {
 							//System.out.println("fucking");
 							serialNumber.setText("Error: Did not find anything related to: ");
+							testing.setText("No Results");
 							book.setText(str);
 						}
 
