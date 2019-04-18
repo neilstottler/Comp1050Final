@@ -10,6 +10,7 @@ import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -91,6 +92,16 @@ public class GUI extends Application {
 		background2.setCenter(imgView2);
 
 
+
+
+		// ScrollPane
+		ScrollPane scrollPane = new ScrollPane();
+		scrollPane.setContent(root2);
+
+		// Pannable.
+		scrollPane.setPannable(true);
+
+
 		// Labels for the information of a book
 		Label resultsSign = new Label("");
 
@@ -121,10 +132,12 @@ public class GUI extends Application {
 		root2.add(extraspacing, 1, 15);
 
 
+
 		root2.setStyle("-fx-background-image: url('" + background2 + "')");
 
 
-		Scene scene2 = new Scene(root2,975,650);
+		Scene scene2 = new Scene(scrollPane,975,650);
+
 
 		/*
 		 * 
@@ -135,6 +148,7 @@ public class GUI extends Application {
 			@Override
 			public void handle(ActionEvent e) {
 
+				//set displayed text to void in case of error/changes to book info
 				author.setText("");
 				book.setText("");
 				serialNumber.setText("");
@@ -178,16 +192,16 @@ public class GUI extends Application {
 										System.out.println(toSort.sorter().get(1));
 										System.out.println(toSort.sorter().get(2));
 										System.out.println(toSort.sorter().get(3));
-										
+
 										if (!(toSort.sorter().size() < 4)) {
 
-												//set text of lables to match search
-												serialNumber.setText("ISBN: " + toSort.sorter().get(0));
-												author.setText("Author: " + toSort.sorter().get(1));
-												book.setText("Title: " + toSort.sorter().get(2));
-												abStract.setText("Abstract: " + toSort.sorter().get(3));
+											//set text of lables to match search
+											serialNumber.setText("ISBN: " + toSort.sorter().get(0));
+											author.setText("Author: " + toSort.sorter().get(1));
+											book.setText("Title: " + toSort.sorter().get(2));
+											abStract.setText("Abstract: " + toSort.sorter().get(3));
 
-												break;
+											break;
 
 										} else {
 											serialNumber.setText("Error: " + aryLines[0]);
@@ -197,14 +211,14 @@ public class GUI extends Application {
 								}
 							}
 						}
-						
+
 						if (counter == 0) {
 							//System.out.println("fucking");
 							serialNumber.setText("Error: Did not find anything related to: ");
 							book.setText(str);
 						}
 
-						
+
 					} catch (IOException e1) {
 						System.out.println(e1.getMessage());
 					}
@@ -226,6 +240,7 @@ public class GUI extends Application {
 			@Override
 			public void handle(ActionEvent e) {
 
+				//set displayed text to void in case of error/changes to book info
 				author.setText("");
 				book.setText("");
 				serialNumber.setText("");
@@ -269,16 +284,16 @@ public class GUI extends Application {
 										System.out.println(toSort.sorter().get(1));
 										System.out.println(toSort.sorter().get(2));
 										System.out.println(toSort.sorter().get(3));
-										
+
 										if (!(toSort.sorter().size() < 4)) {
 
-												//set text of lables to match search
-												serialNumber.setText("ISBN: " + toSort.sorter().get(0));
-												author.setText("Author: " + toSort.sorter().get(1));
-												book.setText("Title: " + toSort.sorter().get(2));
-												abStract.setText("Abstract: " + toSort.sorter().get(3));
+											//set text of lables to match search
+											serialNumber.setText("ISBN: " + toSort.sorter().get(0));
+											author.setText("Author: " + toSort.sorter().get(1));
+											book.setText("Title: " + toSort.sorter().get(2));
+											abStract.setText("Abstract: " + toSort.sorter().get(3));
 
-												break;
+											break;
 
 										} else {
 											serialNumber.setText("Error: " + aryLines[0]);
@@ -288,14 +303,14 @@ public class GUI extends Application {
 								}
 							}
 						}
-						
+
 						if (counter == 0) {
 							//System.out.println("fucking");
 							serialNumber.setText("Error: Did not find anything related to: ");
 							book.setText(str);
 						}
 
-						
+
 					} catch (IOException e1) {
 						System.out.println(e1.getMessage());
 					}
