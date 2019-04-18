@@ -67,7 +67,7 @@ public class Searcher {
 				
 			} else if (counter == 0 && !contains) {
 				
-				System.out.println("FUCK");
+				System.out.println("Nothing found?");
 				
 				if (counter > 0) {
 					return textData;
@@ -78,7 +78,7 @@ public class Searcher {
 						textReader.close();
 					}
 					
-					System.out.println("we here 3");
+					//System.out.println("we here 3");
 					//textData[0] = "Unknown Error";
 
 					textReader.close();

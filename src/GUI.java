@@ -156,8 +156,8 @@ public class GUI extends Application {
 						String[] aryLines = search.OpenFile();
 
 						for (int i = 0; i < Searcher.getNumberOfLines(); i++) {
-							System.out.println(i);
-							System.out.println("aryLines " + aryLines[i]);
+							//System.out.println(i);
+							//System.out.println("aryLines " + aryLines[i]);
 
 
 							//check if array[i] is null							
@@ -199,7 +199,7 @@ public class GUI extends Application {
 						}
 						
 						if (counter == 0) {
-							System.out.println("fucking");
+							//System.out.println("fucking");
 							serialNumber.setText("Error: Did not find anything related to: ");
 							book.setText(str);
 						}
@@ -247,8 +247,8 @@ public class GUI extends Application {
 						String[] aryLines = search.OpenFile();
 
 						for (int i = 0; i < Searcher.getNumberOfLines(); i++) {
-							System.out.println(i);
-							System.out.println("aryLines " + aryLines[i]);
+							//System.out.println(i);
+							//System.out.println("aryLines " + aryLines[i]);
 
 
 							//check if array[i] is null							
@@ -290,7 +290,7 @@ public class GUI extends Application {
 						}
 						
 						if (counter == 0) {
-							System.out.println("fucking");
+							//System.out.println("fucking");
 							serialNumber.setText("Error: Did not find anything related to: ");
 							book.setText(str);
 						}
