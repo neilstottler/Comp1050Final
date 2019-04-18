@@ -174,7 +174,11 @@ public class GUI extends Application {
 									counter++;
 									//print sorted
 									for (int j = 0; j < Searcher.getNumberOfLines(); j++) {						
-
+										System.out.println(toSort.sorter().get(0));
+										System.out.println(toSort.sorter().get(1));
+										System.out.println(toSort.sorter().get(2));
+										System.out.println(toSort.sorter().get(3));
+										
 										if (!(toSort.sorter().size() < 4)) {
 
 												//set text of lables to match search
@@ -183,7 +187,6 @@ public class GUI extends Application {
 												book.setText("Title: " + toSort.sorter().get(2));
 												abStract.setText("Abstract: " + toSort.sorter().get(3));
 
-												System.out.println("BREAK shit test " + toSort.sorter().get(0));
 												break;
 
 										} else {
@@ -228,9 +231,13 @@ public class GUI extends Application {
 				serialNumber.setText("");
 				abStract.setText("");
 
+				int counter = 0;
 
 				//check if search bar is empty
-				if (!searchbar2.getText().equals("")) {
+				if (searchbar.getText().equals("")) {
+					primaryStage.setScene(scene2);
+
+				} else {
 
 					primaryStage.setScene(scene2);
 					// temp. outputs contexts of txt file
@@ -239,8 +246,12 @@ public class GUI extends Application {
 						Searcher search = new Searcher(str);
 						String[] aryLines = search.OpenFile();
 
-						for (int i = 0; i < aryLines.length; i++) {
-							//check if array[i] is null
+						for (int i = 0; i < Searcher.getNumberOfLines(); i++) {
+							System.out.println(i);
+							System.out.println("aryLines " + aryLines[i]);
+
+
+							//check if array[i] is null							
 							if (aryLines[i] == null) {
 								System.out.println("");
 							} else {
@@ -249,11 +260,17 @@ public class GUI extends Application {
 								String unsorted = aryLines[i];
 								Book toSort = new Book(unsorted);
 
+
 								if (aryLines[i].contains(str)) {
+									counter++;
 									//print sorted
-									for (int j = 0; j < aryLines.length; j++) {
+									for (int j = 0; j < Searcher.getNumberOfLines(); j++) {						
+										System.out.println(toSort.sorter().get(0));
+										System.out.println(toSort.sorter().get(1));
+										System.out.println(toSort.sorter().get(2));
+										System.out.println(toSort.sorter().get(3));
+										
 										if (!(toSort.sorter().size() < 4)) {
-											if (!searchbar.getText().equals("")) {
 
 												//set text of lables to match search
 												serialNumber.setText("ISBN: " + toSort.sorter().get(0));
@@ -261,28 +278,27 @@ public class GUI extends Application {
 												book.setText("Title: " + toSort.sorter().get(2));
 												abStract.setText("Abstract: " + toSort.sorter().get(3));
 
-											}
+												break;
+
 										} else {
 											serialNumber.setText("Error: " + aryLines[0]);
 										}
 
 									}
-								} else {
-									serialNumber.setText("Error: Did not find anything related to: ");
-									book.setText(str);
 								}
-
-
 							}
 						}
+						
+						if (counter == 0) {
+							System.out.println("fucking");
+							serialNumber.setText("Error: Did not find anything related to: ");
+							book.setText(str);
+						}
+
+						
 					} catch (IOException e1) {
 						System.out.println(e1.getMessage());
 					}
-
-				} else {
-					//only does this if search bar is empty
-					primaryStage.setScene(scene2);
-					serialNumber.setText("Please enter some text into the search bar.");
 				}
 			}
 		});
