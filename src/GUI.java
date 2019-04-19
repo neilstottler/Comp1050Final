@@ -261,8 +261,9 @@ public class GUI extends Application {
 				int counter = 0;
 
 				//check if search bar is empty
-				if (searchbar.getText().equals("")) {
+				if (searchbar2.getText().equals("")) {
 					primaryStage.setScene(scene2);
+					serialNumber.setText("Please enter something into the search bar.");
 
 				} else {
 

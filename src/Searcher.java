@@ -36,7 +36,7 @@ public class Searcher {
 		int numberOfLines = readLines();
 		String[] textData = new String[numberOfLines];
 
-		String line = "";
+		//String line = "";
 
 		//set textData array to have each line in text file
 		for (int i = 0; i < numberOfLines; i++) {
@@ -47,7 +47,6 @@ public class Searcher {
 
 			//check if search is in this line
 			boolean contains = textData[i].contains(searchinput);
-			System.out.println(textData[i]);
 			if (contains) {
 				counter++;
 			} 
