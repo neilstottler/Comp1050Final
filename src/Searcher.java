@@ -29,74 +29,32 @@ public class Searcher {
 	 */
 	public String[] OpenFile() throws IOException {
 
-
 		int counter = 0;
 
 		BufferedReader textReader = new BufferedReader(new FileReader(path));
 
 		int numberOfLines = readLines();
 		String[] textData = new String[numberOfLines];
-		
+
 		String line = "";
 
 		//set textData array to have each line in text file
 		for (int i = 0; i < numberOfLines; i++) {
 			textData[i] = textReader.readLine();
-			//System.out.println("converting text line to array " + textData[i]);
 		}
-		
-
-		//System.out.println("numberOfLines " + numberOfLines);
-
 
 		for (int i = 0; i < numberOfLines; i++) {
 
-			//line = textReader.readLine();
-			//textData[counter] = line;
-
-			//System.out.println("lines " + line);
-			//System.out.println("textData before test "  + textData[i]);
-
-
 			//check if search is in this line
 			boolean contains = textData[i].contains(searchinput);
+			System.out.println(textData[i]);
 			if (contains) {
 				counter++;
-				//System.out.println("counter " + counter);
-				//System.out.println("textData RETURN " + textData[i]);
-				
-			} else if (counter == 0 && !contains) {
-				
-				//System.out.println("Nothing found?");
-				
-				if (counter > 0) {
-					return textData;
-				} else {
-					for (int j = 0; j < numberOfLines; j++) {
-						textData[0] = "Unable to find search query";
-						textData[j] = "";
-						textReader.close();
-					}
-					
-					//System.out.println("we here 3");
-					//textData[0] = "Unknown Error";
-
-					textReader.close();
-					return textData;
-				}
-
-			}
-			
-			
-			
+			} 
 		}
-
 		return textData;
-
-
-
 	}
-	
+
 	/**
 	 * gets amount of lines in txt file because the
 	 * file could have a infinite number of lines 
@@ -118,7 +76,7 @@ public class Searcher {
 		return numberOfLines;
 	}
 
-	
+
 	/**
 	 * return number of lines to read in file
 	 * @return number of lines in text file to read
